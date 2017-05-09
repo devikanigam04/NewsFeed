@@ -23,6 +23,9 @@ public class Datum {
     @SerializedName("created_time")
     @Expose
     private String createdTime;
+    @SerializedName("updated_time")
+    @Expose
+    private String updatedTime;
 
     public String getStory() {
         return story;
@@ -70,5 +73,13 @@ public class Datum {
 
     public void setCreatedTime(String createdTime) {
         this.createdTime = createdTime;
+    }
+
+    public String getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(String updatedTime) {
+        this.updatedTime = updatedTime;
     }
 }

@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="...More"
+                android:visibility="gone"
                 android:layout_gravity="center_vertical"
                 android:textColor="@color/com_facebook_button_background_color_selected"
                 android:textStyle="bold|italic" />

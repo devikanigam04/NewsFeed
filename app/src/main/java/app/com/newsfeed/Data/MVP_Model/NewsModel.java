@@ -46,7 +46,7 @@ public class NewsModel implements NewsContracter.Model {
                     }
                 });
         Bundle parameters = new Bundle();
-        parameters.putString("fields", "name,picture,feed{picture,link,story,message,created_time}");
+        parameters.putString("fields", "name,picture,feed{picture,link,story,message,created_time,updated_time}");
         request.setParameters(parameters);
         request.executeAsync();
     }

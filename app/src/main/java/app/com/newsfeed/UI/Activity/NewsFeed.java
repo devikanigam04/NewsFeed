@@ -1,4 +1,4 @@
-package app.com.newsfeed;
+package app.com.newsfeed.UI.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,6 +28,7 @@ import java.util.TimeZone;
 import app.com.newsfeed.Data.MVP_Model.NewsModel;
 import app.com.newsfeed.Data.Pojo.Datum;
 import app.com.newsfeed.Data.Pojo.NewsResponse;
+import app.com.newsfeed.R;
 import app.com.newsfeed.UI.MVP_Contracter.NewsContracter;
 import app.com.newsfeed.UI.MVP_Presenter.NewsPresenter;
 import butterknife.BindView;
@@ -118,7 +119,7 @@ public class NewsFeed extends AppCompatActivity implements NewsContracter.View {
             formatter.setTimeZone(TimeZone.getTimeZone("UTC"));
             Date date=null;
             try {
-                date = formatter.parse(datum.getCreatedTime());
+                date = formatter.parse(datum.getUpdatedTime());
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -130,15 +131,18 @@ public class NewsFeed extends AppCompatActivity implements NewsContracter.View {
 
             holder.tvTime.setText(date_parsed);
 
-            holder.tvLink.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(Intent.ACTION_VIEW);
-                    i.setData(Uri.parse(datum.getLink()));
-                    startActivity(i);
-                }
-            });
-            // loading album cover using Glide library
+            if (datum.getLink() != null) {
+                holder.tvLink.setVisibility(View.VISIBLE);
+                holder.tvLink.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(Intent.ACTION_VIEW);
+                        i.setData(Uri.parse(datum.getLink()));
+                        startActivity(i);
+                    }
+                });
+            }
+
             if (datum.getPicture() != null) {
                 Glide.with(context).load(datum.getPicture()).into(holder.ivPicture);
                 holder.ivPicture.setVisibility(View.VISIBLE);
