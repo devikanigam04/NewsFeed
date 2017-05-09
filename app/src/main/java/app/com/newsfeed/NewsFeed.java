@@ -120,19 +120,14 @@ public class NewsFeed extends AppCompatActivity implements NewsContracter.View {
             try {
                 date = formatter.parse(datum.getCreatedTime());
             } catch (ParseException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            SimpleDateFormat formatter2 = new SimpleDateFormat("dd-MMM-yyyy HH:mm aa");
-            formatter2.setTimeZone(TimeZone.getTimeZone("IST"));
-
-//            System.out.println("Date :" +date);
-
-            String date_parsed = formatter2.format(date);
+            formatter = new SimpleDateFormat("dd-MMM-yyyy HH:mm aa");
+            formatter.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+            String date_parsed = formatter.format(date);
             if (date_parsed != null)
                 Log.d("Date :" ,date_parsed);
 
-//            holder.tvTime.setText(datum.getCreatedTime());
             holder.tvTime.setText(date_parsed);
 
             holder.tvLink.setOnClickListener(new View.OnClickListener() {
